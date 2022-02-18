@@ -6,7 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
-
+ userDetails={
+   id:'',
+   name:'',
+   address:'',
+   age:'',
+   classId:'',
+ }
   constructor() { }
 
   ngOnInit(): void {

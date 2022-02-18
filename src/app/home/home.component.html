@@ -1,28 +1,24 @@
 <router-outlet></router-outlet>
-    <table border="2px" cellspacing="0" cellPadding="15px">
-        <thead>
-            <tr>
-                <th>SN</th>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Age</th>
-                <th>Class</th>
-                <th>Action</th>
-            </tr>
-        </thead>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#" routerLink="/home">AngularDemo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#" routerLink="/table">Table</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" routerLink="/reactive-form">Form</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-        <tr *ngFor="let data of tableData; let i = index;">
-            <td>{{i+1}}</td>
-            <td>{{data.id}}</td>
-            <td>{{data.name}}</td>
-            <td>{{data.address}}</td>
-            <td>{{data.age}}</td>
-            <td>{{data.class}}</td>
-            <td>
-                <input type="button" (click)="onDetailView(data.id,data.name,data.address,data.age,data.class)" value="edit">
-            </td>
-        </tr>
-      </table>
+  <h1>This is a demo site</h1>
+
+    
     
 

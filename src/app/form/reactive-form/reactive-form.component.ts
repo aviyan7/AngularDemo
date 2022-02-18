@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-reactiveform',
   templateUrl: './reactive-form.component.html',
@@ -8,22 +8,32 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ReactiveformComponent implements OnInit {
 
   reactiveForm: FormGroup = new FormGroup({});
+  submitted = false;
+  disabled = false;
   constructor( 
     private form: FormBuilder){}
   
 
   ngOnInit(): void {
     this.reactiveForm = this.form.group({
-      firstname: [undefined],
-      lastname: [undefined],
-      email: [undefined],
-      address: [undefined],
-      password: [undefined],
+      firstname: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]],
+      lastname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
+      email: ['', [Validators.required, Validators.email]],
+      address: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
+      pass: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
     });
   }
 
     onSubmitForm(form: any): void {
+      this.submitted = true;
+      if(this.reactiveForm.invalid==true){
+        return;
+      }
      console.log(form.value);
+    }
+
+    get forms(): { [key: string]: AbstractControl } {
+      return this.reactiveForm.controls;
     }
   }
 

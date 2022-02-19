@@ -8,6 +8,7 @@ import { DetailsComponent } from './details/details.component';
 import { ReactiveformComponent } from './form/reactive-form/reactive-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableComponent } from './table/table.component';
+import { TemplateFormComponent } from './template-form/template-form.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +16,14 @@ import { TableComponent } from './table/table.component';
     HomeComponent,
     DetailsComponent,
     ReactiveformComponent,
-    TableComponent
+    TableComponent,
+    TemplateFormComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

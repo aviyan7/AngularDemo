@@ -4,6 +4,7 @@ import { DetailsComponent } from './details/details.component';
 import { ReactiveformComponent } from './form/reactive-form/reactive-form.component';
 import { HomeComponent } from './home/home.component';
 import { TableComponent } from './table/table.component';
+import { TemplateFormComponent } from './template-form/template-form.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: 'table',
     component: TableComponent
+  },
+  {
+    path: 'template-form',
+    component: TemplateFormComponent
   }
 ];
 

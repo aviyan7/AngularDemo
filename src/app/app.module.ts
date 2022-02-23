@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -9,6 +8,9 @@ import { ReactiveformComponent } from './form/reactive-form/reactive-form.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableComponent } from './table/table.component';
 import { TemplateFormComponent } from './template-form/template-form.component';
+import { UserComponent } from './user/user.component';
+import { EditComponent } from './edit/edit.component';
+import { AddUserComponent } from './add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -17,13 +19,16 @@ import { TemplateFormComponent } from './template-form/template-form.component';
     DetailsComponent,
     ReactiveformComponent,
     TableComponent,
-    TemplateFormComponent
+    TemplateFormComponent,
+    UserComponent,
+    EditComponent,
+    AddUserComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    FormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

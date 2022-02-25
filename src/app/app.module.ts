@@ -11,6 +11,12 @@ import { TemplateFormComponent } from './template-form/template-form.component';
 import { UserComponent } from './user/user.component';
 import { EditComponent } from './edit/edit.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { ViewComponent } from './view/view.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HttpClientModule } from '@angular/common/http';
+import { UserBackupService } from './services/user-backup.service';
+import { UserService } from './services/user.service';
+
 
 @NgModule({
   declarations: [
@@ -23,14 +29,17 @@ import { AddUserComponent } from './add-user/add-user.component';
     UserComponent,
     EditComponent,
     AddUserComponent,
+    ViewComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [UserBackupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

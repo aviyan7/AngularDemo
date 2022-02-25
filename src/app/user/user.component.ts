@@ -43,16 +43,20 @@ export class UserComponent implements OnInit {
   ]
 
   onUserView(id: string){
-    this.router.navigateByUrl('users/edit');
+    this.router.navigateByUrl('home/users/edit');
   };
 
   onAddUser(){
-    this.router.navigateByUrl('users/add');
+    this.router.navigateByUrl('home/users/add');
   };
 
   onDelete(data: any){
     const index = this.userData.indexOf(data);
     this.userData.splice(index, 1);
+  };
+
+  onView(){
+    this.router.navigateByUrl('home/users/view');
   };
 
 }

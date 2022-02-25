@@ -10,6 +10,8 @@ import { TemplateFormComponent } from './template-form/template-form.component';
 import { UserComponent } from './user/user.component';
 import { EditComponent } from './edit/edit.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { ViewComponent } from './view/view.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -19,8 +21,8 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
-  },
+    component: HomeComponent,
+    children:[
   {
     path: 'another-page',
     component: HomeComponent
@@ -57,6 +59,15 @@ const routes: Routes = [
     path: 'users/add',
     component: AddUserComponent
   },
+  {
+    path: 'users/view',
+    component: ViewComponent
+  },
+  {
+    path: '**', component: PageNotFoundComponent //wild card route
+  },
+],
+  }
 ];
 
 @NgModule({

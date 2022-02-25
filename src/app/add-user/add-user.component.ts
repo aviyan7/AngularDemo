@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router } from '@angular/router';
-
+import { UserService } from 'src/app/services/user.service';
+import { FormGroup, FormBuilder, AbstractControl, Validators} from '@angular/forms';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -8,14 +9,41 @@ import {Router } from '@angular/router';
 })
 export class AddUserComponent implements OnInit {
 
-  constructor(private router : Router) { }
+  userForm: FormGroup = new FormGroup({});
+  submitted = false;
+  disabled = false;
+  constructor( 
+    private form: FormBuilder,
+    private userService: UserService
+    ){}
+  
 
   ngOnInit(): void {
+    this.initForm();
   }
 
-  onAdd(){
-    alert("New user is added");
-    this.router.navigateByUrl('users');
+  initForm(){
+    this.userForm = this.form.group({
+      firstname: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]],
+      lastname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
+      email: ['', [Validators.required, Validators.email]],
+      address: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
+      pass: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
+    });
   }
+
+    onSubmit(user: any): void {
+      this.userService.addUsers(user).subscribe(
+        (response: any) => {
+          console.log(response);
+        }, error => {
+          console.error(error);
+        }
+      );
+    }
+
+    get forms(): { [key: string]: AbstractControl } {
+      return this.userForm.controls;
+    }
 
 }

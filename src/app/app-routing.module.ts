@@ -52,7 +52,7 @@ const routes: Routes = [
     component: UserComponent
   },
   {
-   path: 'users/edit',
+   path: 'users/edit/:id',
    component: EditComponent
   },
   {
@@ -60,7 +60,7 @@ const routes: Routes = [
     component: AddUserComponent
   },
   {
-    path: 'users/view',
+    path: 'users/view/:id',
     component: ViewComponent
   },
   {

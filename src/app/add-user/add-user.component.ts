@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { FormGroup, FormBuilder, AbstractControl, Validators} from '@angular/forms';
+
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -14,7 +15,8 @@ export class AddUserComponent implements OnInit {
   disabled = false;
   constructor( 
     private form: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
     ){}
   
 
@@ -24,11 +26,11 @@ export class AddUserComponent implements OnInit {
 
   initForm(){
     this.userForm = this.form.group({
-      firstname: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]],
-      lastname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
+      firstname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
+      lastname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
       email: ['', [Validators.required, Validators.email]],
       address: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
-      pass: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
+      pass: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
     });
   }
 
@@ -36,10 +38,14 @@ export class AddUserComponent implements OnInit {
       this.userService.addUsers(user).subscribe(
         (response: any) => {
           console.log(response);
-        }, error => {
+        }, (error: any) => {
           console.error(error);
         }
       );
+    }
+
+    onBack(){
+      this.router.navigateByUrl('/home/users');
     }
 
     get forms(): { [key: string]: AbstractControl } {

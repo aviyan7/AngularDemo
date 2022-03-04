@@ -1,19 +1,51 @@
 <div class="container mt-5">
     <div class="row">
-        <div class="col-sm-12">
-        <h1>User Information</h1>
-
-        <h4>Name:{{user.name}}</h4>
-        <h4>Email:{{user.email}}</h4>
-        <h4>Address:{{user.address}}</h4>
-        <h4>Age: {{user.age}}</h4>
-        
-        <button class="btn btn-primary" (click)="onBack()">Back</button>
+      <div class="col-sm-12">
+        <form [formGroup]="userForm">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label>Full Name<span class="text-danger">*</span></label>
+                <input type="text" formControlName="name" name="Name" class="form-control" placeholder="First Name" readonly/>
+              </div>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label>E-mail<span class="text-danger">*</span></label>
+                <input type="email" formControlName="email" name="email" class="form-control" placeholder="E-mail" readonly />
+              </div>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label>Address<span class="text-danger">*</span></label>
+                <input type="text" formControlName="address" class="form-control" placeholder="Address" readonly/>
+              </div>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label>Dob<span class="text-danger">*</span></label>
+                <input type="date" formControlName="dob" name="dob" class="form-control" placeholder="DOB" readonly/>
+              </div>
+            </div>
+          </div>
+          
+  
+          <div class="row">
+            <div class="col-sm-12">
+              <button class="btn btn-primary" (click)="onBack()">Back</button>
+            </div>
+          </div>
+  
+        </form>
+      </div>
     </div>
-</div>
-</div>
-
-
-<!-- <h2> Name:{{user.name}}</h2>
-<h2> Address:{{this.address}}</h2>
-<h2> Age:{{data.age}}</h2> -->
+  </div>

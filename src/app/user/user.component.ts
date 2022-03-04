@@ -2,14 +2,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
-
+import { UserResponseModel } from '../model/userResponse.model';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.css'],
+  providers: [UserService]
 })
 export class UserComponent implements OnInit {
+
+  // usersResponse: any = [];
+   usersResponse: Array<UserResponseModel> = new Array<UserResponseModel>();
+  
   constructor(
     private router:Router,
     private userService: UserService) { }
@@ -45,19 +50,13 @@ export class UserComponent implements OnInit {
   //   },
   // ]
 
-  usersResponse: any | [] = [];
 
   onUserView(id: string | undefined,
-    paramName: string | undefined,
-    paramEmail: string | undefined,
-    paramAddress: string | undefined,
-    paramAge: string | undefined){
+    paramName: string | undefined
+){
     this.router.navigate(['home/users/view', id],{
       queryParams: {
-        name: paramName,
-        email: paramEmail,
-        address: paramAddress,
-        age: paramAge
+        name: paramName
       },
     });
   }
@@ -73,7 +72,8 @@ export class UserComponent implements OnInit {
         response => {
           console.log(response);
           this.usersResponse = response;
-          alert('The user: '+id+' has been deleted');
+          this.listAllUsers();
+          // alert('The user: '+id+' has been deleted');
         },
         error => {
           console.error();
@@ -90,19 +90,9 @@ return;
     // this.userData.splice(index, 1);
   
 
-  onEdit(id: string | undefined,
-    paramName: string | undefined,
-    paramEmail: string | undefined,
-    paramAddress: string | undefined,
-    paramAge: string | undefined){
-    this.router.navigate(['home/users/edit', id],{
-      queryParams: {
-        name: paramName,
-        email: paramEmail,
-        address: paramAddress,
-        age: paramAge
-      },
-    });
+  onEdit(id: string | undefined
+     ){
+    this.router.navigate(['home/users/edit', id]);
   }
     // this.userService.onView(id).subscribe(
     //   response => {
@@ -118,9 +108,9 @@ return;
 
   listAllUsers(): void{
     this.userService.listAllUsers().subscribe(
-      response => {
+      (response: any) => {
         console.log(response);
-        this.usersResponse = response;
+        this.usersResponse = response.users;
       },
       error => {
         console.error();

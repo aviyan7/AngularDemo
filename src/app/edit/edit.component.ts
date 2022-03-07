@@ -45,7 +45,7 @@ export class EditComponent implements OnInit {
         dob: [undefined],
         contacts: new FormArray([])
       });
-      this.initContacts();
+      // this.initContacts();
     }
 
     initContacts(){

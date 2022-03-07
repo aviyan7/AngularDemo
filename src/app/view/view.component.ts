@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { UserResponseModel } from '../model/userResponse.model';
@@ -34,8 +34,23 @@ export class ViewComponent implements OnInit {
       email: [undefined],
       address: [undefined],
       dob: [undefined],
+      contacts: new FormArray([])
     });
+    // this.initContacts();
   }
+
+  initContacts(){
+    (this.userForm.get('contacts') as FormArray).push(
+      this.formBuilder.group({
+        mobileNumber:[undefined],
+        id:[undefined],
+        email:[undefined],
+        userId: [undefined],
+      })
+    )
+  }
+
+
 
   onBack(){
     this.router.navigateByUrl('home/users');
@@ -50,6 +65,10 @@ export class ViewComponent implements OnInit {
     });
   }
 
+  get getContactForm(): FormArray {
+    return (this.userForm.get('contacts') as FormArray);
+  }
+
   setUserExistingDetails(user: UserResponseModel) {
     this.userForm.patchValue({
       name: user.name,
@@ -57,6 +76,16 @@ export class ViewComponent implements OnInit {
       address: user.address,
       dob: user.dob,
     });
+    if(user.contacts.length==0)
+      {return;}
+      user?.contacts?.forEach((value)=>{
+        (this.userForm.get('contacts')as FormArray).push(
+          this.formBuilder.group({
+            mobileNumber: value?.mobileNumber,
+            email: value?.email
+          })
+        )
+      });
   }
 
 

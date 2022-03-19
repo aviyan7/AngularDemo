@@ -83,25 +83,42 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
-              <ng-container formArrayName="contacts"  *ngFor="let data of getContactForm?.controls; let i = index">
+              <ng-container formArrayName="contacts" *ngFor="let data of getContactForm?.controls; let i = index">
                 <div class="row mb-3" [formGroupName]="i">
+
+                  <input type="text" name="mobileNumber" id="mobileNumber" 
+                    formControlName="id"
+                    placeholder="Mobile Number" class="form-control" 
+                    hidden
+                    />
+
+                    <input type="text" name="mobileNumber" id="mobileNumber" 
+                    formControlName="user"
+                    placeholder="Mobile Number" class="form-control" 
+                    hidden
+                    />
+
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label>Contact Number: <span class="text-danger">*</span> </label>
-                      <input type="text" name="mobileNumber" id="mobileNumber" formControlName="mobileNumber" placeholder="Mobile Number" class="form-control" />
+                      <input type="text" name="mobileNumber" id="mobileNumber" formControlName="mobileNumber"
+                        placeholder="Mobile Number" class="form-control" />
                     </div>
                   </div>
-      
+
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label>Contact Email: <span class="text-danger">*</span> </label>
-                      <input type="text" name="email" id="email" formControlName="email" placeholder="Contact Email" class="form-control" />
+                      <input type="text" name="email" id="email" formControlName="email" placeholder="Contact Email"
+                        class="form-control" />
                     </div>
                   </div>
-                  <button class="badge badge-secondary col-sm-1" style="color: green; float: right;" (click)="deleteContactForm(i)" *ngIf="getContactForm.length > 1">Delete</button>
+                  <button class="badge badge-secondary col-sm-1" style="color: green; float: right;"
+                    (click)="deleteContactForm(i)" *ngIf="getContactForm.length > 1">Delete</button>
                 </div>
               </ng-container>
-              <button class="badge badge-primary" style="color: green; float: right;" (click)="initContacts()">Add More</button>
+              <button class="badge badge-primary" style="color: green; float: right;" (click)="initContacts()">Add
+                More</button>
             </div>
           </div>
         </div>
